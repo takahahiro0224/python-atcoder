@@ -1,11 +1,16 @@
 # https://atcoder.jp/contests/abc141/tasks/abc141_b
 
-S = input().split('')
-
-odds = []
-evens = []
-for s in S:
-    if s % 2 == 0:
-        evens.appned(s)
+S = list(input())
+odd = ['R', 'U', 'D']
+even = ['L', 'U', 'D']
+for i in range(len(S)):
+    if i % 2 == 0:
+        if S[i] not in odd:
+            print('No')
+            exit()
     else:
-        odds.append(s)
+        if S[i] not in even:
+            print('No')
+            exit()
+print('Yes')
+
