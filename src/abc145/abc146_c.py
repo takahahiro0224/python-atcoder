@@ -11,9 +11,7 @@ Example:
 
 n = int(input())
 p = [tuple(map(int, input().split())) for n_ in range(n)]
-print(p)
 routes = [i for i in itertools.permutations(range(0,n), n)]
-print(routes)
 distances = 0
 for route in routes:
     for i in range(len(route)-1):
