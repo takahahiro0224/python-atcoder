@@ -42,3 +42,7 @@ def factorizationList(n):
     return arr
 
 print(factorizationList(50))
+
+# alphabetを列挙
+import string
+ALPHABET = string.ascii_uppercase
