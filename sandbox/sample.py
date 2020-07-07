@@ -46,3 +46,11 @@ print(factorizationList(50))
 # alphabetを列挙
 import string
 ALPHABET = string.ascii_uppercase
+print(ALPHABET) # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+
+# foldLeft
+l = [1,2,3,4,5]
+import functools
+product_l = functools.reduce(lambda x, y: x * y, l, 1)
+print(product_l) # 120
