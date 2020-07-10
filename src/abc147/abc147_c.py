@@ -36,7 +36,7 @@ for i in range(2 ** len(infos)):
     for j in range(2 ** len(infos)):
         if i & (1 << j):
 
-
+# 続きは後で
 
 
 
