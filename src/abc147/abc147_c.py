@@ -1,42 +1,39 @@
 # https://atcoder.jp/contests/abc147/tasks/abc147_c
-from typing import List, Tuple
+from typing import List
 
-# 参考回答
-# https://atcoder.jp/contests/abc147/submissions/14837598
-# そんなにわかってない
-
-
-
-def io_readline() -> List[List[Tuple[int, ...]]]:
+# 人iの証言を人jに対する証言をリストで格納。1:正直者, 0:不親切, -1:言及なし
+def io_info() -> List[List[int]]:
     N = int(input())
-    res = []
+    res = [[-1] * N for _ in range(N)]
     for n in range(N):
-        a_n = int(input())
-        n_testimony = []
-        for _ in range(a_n):
-            testimony = tuple(map(int, input().split()))
-            n_testimony.append(testimony)
-        res.append(n_testimony)
+        a = int(input())
+        for _ in range(a):
+            x, y = map(int, input().split())
+            res[n][x-1] = y
     return res
 
 
-infos = io_readline()
-ans = 0
-for i in range(2 ** len(infos)):
-    cnt = bin(i).count("1")
-    if cnt <= ans: continue
-    for j in range(len(infos)):
-        # 1を左シフト
-        if i & (1 << j):
-            for x, y in infos[j]:
-                if y == 1 and i % (1 << x-1): continue
-                if y == 0 and i % (1 << x-1) == 0: continue
-                break
-            else:
-                continue
-            break
-    else:
-        ans = cnt
+def main():
+    infos = io_info()
+    n = len(infos)
+    ans = 0
+    for i in range(1 << n):
+        d = [0] * n
+        for j in range(n):
+            # iのj+1ビット目が1かどうか,d[j]が正直なら1を割り当てる
+            if (i >> j) & 1:
+                d[j] = 1
+        ok = True
+        for j in range(n):
+            if d[j]:
+                for k in range(n):
+                    if infos[j][k] == -1: continue
+                    if infos[j][k] != d[k]: ok = False
 
-print(ans)
+        if ok: ans = max(ans, bin(i).count("1"))
+    print(ans)
 
+
+
+if __name__ == '__main__':
+    main()
