@@ -54,3 +54,9 @@ l = [1,2,3,4,5]
 import functools
 product_l = functools.reduce(lambda x, y: x * y, l, 1)
 print(product_l) # 120
+
+# 順列
+import itertools
+l = [1,2,3]
+for v in itertools.permutations(l,3):
+    print(v)
